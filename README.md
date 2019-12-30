@@ -20,4 +20,8 @@
 
 ### Modified at 12:46 on December 30, 2019
 
-1. Add the PCB project to a folder called PCB.
+1. Add the PCB project to a folder called PCB. 
+
+### Modified at 22:51 on December 30, 2019
+
+1. Add some module information to the folder info. 

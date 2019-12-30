@@ -4,6 +4,8 @@
 
   大三上学期单片机原理及其应用课程设计。
 
+[Language / 语言](https://github.com/Heanden/intelligentCarByMSP430F5529/blob/master/README.md)
+
 ## 内容
 
 ### PCB

@@ -4,6 +4,8 @@
 
  In the first semester of the third grade, the principle and application course design of single chip microcomputer -- intelligent car.
 
+[Language / 语言](https://github.com/Heanden/intelligentCarByMSP430F5529/blob/master/README_zh-CN.md)
+
 ## Content
 
 ### PCB

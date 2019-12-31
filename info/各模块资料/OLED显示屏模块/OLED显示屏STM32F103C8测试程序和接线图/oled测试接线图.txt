@@ -1,6 +1,0 @@
-GNG---GND
-VCC---3.3V~5.0V
-SCL---PA5
-SDA---PA6
-RES---PA7
-DC---PA3

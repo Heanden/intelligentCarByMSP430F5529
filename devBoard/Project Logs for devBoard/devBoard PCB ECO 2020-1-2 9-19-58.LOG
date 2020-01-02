@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=GND Pin=oled-1
+Removed Pin From Net: NetName=3.3v Pin=oled-2
+Removed Pin From Net: NetName=P4.0 Pin=oled-4
+Removed Pin From Net: NetName=P3.7 Pin=oled-5
+Removed Pin From Net: NetName=P8.2 Pin=oled-6
+Removed Member From Class: ClassName=devBoard Member=oled
+Added Room: Name=devBoard

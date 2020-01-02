@@ -1,0 +1,28 @@
+Removed Member From Class: ClassName=devBoard Member=k1
+Removed Member From Class: ClassName=devBoard Member=k2
+Added Component: Designator=Ppp1(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=ppp2(HDR1X2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetPpp1_1 Pin=Ppp1-1
+Added Pin To Net: NetName=NetPpp1_1 Pin=Pqd1-7
+Added Net: Name=NetPpp1_1
+Added Pin To Net: NetName=NetPpp1_2 Pin=Ppp1-2
+Added Pin To Net: NetName=NetPpp1_2 Pin=Pqd1-6
+Added Net: Name=NetPpp1_2
+Added Pin To Net: NetName=Netppp2_1 Pin=ppp2-1
+Added Pin To Net: NetName=Netppp2_1 Pin=Pqd2-2
+Added Net: Name=Netppp2_1
+Added Pin To Net: NetName=Netppp2_2 Pin=ppp2-2
+Added Pin To Net: NetName=Netppp2_2 Pin=Pqd2-1
+Added Net: Name=Netppp2_2
+Added Member To Class: ClassName=devBoard Member=Component C? Cap Pol1
+Added Member To Class: ClassName=devBoard Member=Component Ppp1 Header 2
+Added Member To Class: ClassName=devBoard Member=Component ppp2 Header 2
+Added Room: Name=devBoard

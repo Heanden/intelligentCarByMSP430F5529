@@ -1,0 +1,37 @@
+Removed Pin From Net: NetName=GND Pin=-1
+Removed Pin From Net: NetName=+5 Pin=-3
+Removed Pin From Net: NetName=7.4v Pin=-6
+Removed Pin From Net: NetName=GND Pin=-7
+Removed Pin From Net: NetName=GND Pin=gestureControl-5
+Removed Pin From Net: NetName=3.3v Pin=gestureControl-6
+Removed Pin From Net: NetName=GND Pin=OLED-1
+Removed Pin From Net: NetName=3.3v Pin=OLED-2
+Removed Pin From Net: NetName=+5 Pin=P?-1
+Removed Pin From Net: NetName=GND Pin=P?-2
+Removed Pin From Net: NetName=+5 Pin=P?-3
+Removed Pin From Net: NetName=GND Pin=P?-4
+Removed Pin From Net: NetName=+5 Pin=P?-5
+Removed Pin From Net: NetName=GND Pin=P?-6
+Removed Pin From Net: NetName=3.3v Pin=P?-7
+Removed Pin From Net: NetName=GND Pin=P?-8
+Removed Pin From Net: NetName=3.3v Pin=P?-9
+Removed Pin From Net: NetName=GND Pin=P?-10
+Removed Pin From Net: NetName=3.3v Pin=P?-11
+Removed Pin From Net: NetName=GND Pin=P?-12
+Removed Pin From Net: NetName=3.3v Pin=pinHeaderLift-1
+Removed Pin From Net: NetName=+5 Pin=pinHeaderLift-2
+Removed Pin From Net: NetName=GND Pin=pinHeaderLift-4
+Removed Pin From Net: NetName=GND Pin=pinHeaderRight-2
+Removed Pin From Net: NetName=+5 Pin=ultrasonic-1
+Removed Pin From Net: NetName=GND Pin=ultrasonic-5
+Removed Member From Class: ClassName=devBoard Member=gestureControl
+Removed Member From Class: ClassName=devBoard Member=OLED
+Removed Member From Class: ClassName=devBoard Member=P?
+Removed Member From Class: ClassName=devBoard Member=pinHeaderLift
+Removed Member From Class: ClassName=devBoard Member=pinHeaderRight
+Removed Member From Class: ClassName=devBoard Member=qd1
+Removed Member From Class: ClassName=devBoard Member=qd2
+Removed Member From Class: ClassName=devBoard Member=ultrasonic
+Added Member To Class: ClassName=devBoard Member=Component sw1 船型开关 3脚
+Added Member To Class: ClassName=devBoard Member=Component sw2 船型开关 3脚
+Added Room: Name=devBoard

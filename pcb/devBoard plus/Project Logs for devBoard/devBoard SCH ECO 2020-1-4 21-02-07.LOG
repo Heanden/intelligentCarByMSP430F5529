@@ -1,0 +1,9 @@
+Remove Pin=Pqd1-2 From Net=7.4v
+Change Component Designator: OldDesignator=LI NewDesignator=Battery
+Change Component Designator: OldDesignator=LIc NewDesignator=Charge
+Change Component Designator: OldDesignator=Ppp1 NewDesignator=
+Change Component Designator: OldDesignator=ppp2 NewDesignator=
+Change Component Designator: OldDesignator=Pqd1 NewDesignator=
+Change Component Designator: OldDesignator=Pqd2 NewDesignator=
+Change Component Designator: OldDesignator=U1 NewDesignator=LM1117
+Change Component Designator: OldDesignator=U2 NewDesignator=LM2940

@@ -1,0 +1,32 @@
+*************************************************************
+FileName = devBoard.~(2).GBR
+AutoAperture = True
+*************************************************************
+Generating : Bottom Layer
+      File : devBoard.~(2)_Copper_Signal_Bot.gbr
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+    D14
+    D15
+    D16
+    D17
+    D18
+*************************************************************
+
+*************************************************************
+Generating : Non-plated through-hole drill file
+      File : devBoard.~(2)_NPTH_Drill.gbr
+
+
+Used DCodes :
+*************************************************************
+

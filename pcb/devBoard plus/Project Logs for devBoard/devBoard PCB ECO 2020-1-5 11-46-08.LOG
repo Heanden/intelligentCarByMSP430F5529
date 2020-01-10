@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=P4.3 Pin=OLED-2
+Removed Pin From Net: NetName=P4.0 Pin=OLED-3
+Removed Pin From Net: NetName=P3.7 Pin=OLED-4
+Removed Pin From Net: NetName=P8.2 Pin=OLED-5
+Removed Pin From Net: NetName=3.3v Pin=OLED-6
+Added Pin To Net: NetName=3.3v Pin=OLED-2
+Added Pin To Net: NetName=P4.3 Pin=OLED-3
+Added Pin To Net: NetName=P4.0 Pin=OLED-4
+Added Pin To Net: NetName=P3.7 Pin=OLED-5
+Added Pin To Net: NetName=P8.2 Pin=OLED-6
+Added Member To Class: ClassName=devBoard Member=Component  Header 7
+Added Member To Class: ClassName=devBoard Member=Component  Header 7
+Added Room: Name=devBoard

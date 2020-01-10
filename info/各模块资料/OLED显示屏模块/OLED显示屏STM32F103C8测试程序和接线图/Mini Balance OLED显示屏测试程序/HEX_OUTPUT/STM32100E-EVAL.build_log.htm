@@ -1,0 +1,145 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\BaiduYunDownload\OLED显示屏模块附送资料\OLED显示屏测试程序和接线图\Mini Balance OLED显示屏测试程序\Project\STM32F10x_StdPeriph_Template\MDK-ARM\Project.uvproj
+Project File Date:  01/01/2011
+
+<h2>Output:</h2>
+Build target 'STM32F103C8'
+linking...
+Program Size: Code=1480 RO-data=3000 RW-data=4 ZI-data=2052  
+FromELF: creating hex file...
+"..\..\..\HEX_OUTPUT\STM32100E-EVAL.axf" - 0 Error(s), 0 Warning(s).
+</pre>
+</body>
+</html>
+EX_OUTPUT\STM32100E-EVAL.axf" - 0 Error(s), 0 Warning(s).
+OUTPUT\STM32100E-EVAL.axf" - 1 Error(s), 0 Warning(s).
+Target not created
+t file "MiniBalance.h": No such file or directory
+  #include "MiniBalance.h"
+..\..\..\drivers\show\show.c: 0 warnings, 1 error
+"..\..\..\HEX_OUTPUT\STM32100E-EVAL.axf" - 1 Error(s), 1 Warning(s).
+Target not created
+elay.c: 0 warnings, 1 error
+compiling oled.c...
+..\main.h(11): error:  #5: cannot open source input file "led.h": No such file or directory
+  #include "led.h"
+..\..\..\drivers\OLED\oled.c: 0 warnings, 1 error
+compiling show.c...
+..\main.h(11): error:  #5: cannot open source input file "led.h": No such file or directory
+  #include "led.h"
+..\..\..\drivers\show\show.c: 0 warnings, 1 error
+"..\..\..\HEX_OUTPUT\STM32100E-EVAL.axf" - 4 Error(s), 0 Warning(s).
+Target not created
+20: identifier "Flag_Qian" is undefined
+                if(uart_receive==0x00)  Flag_Qian=0,Flag_Hou=0,Flag_Left=0,Flag_Right=0;//////////////刹车
+..\..\..\drivers\usart3\usart3.c(64): error:  #20: identifier "Flag_Hou" is undefined
+                if(uart_receive==0x00)  Flag_Qian=0,Flag_Hou=0,Flag_Left=0,Flag_Right=0;//////////////刹车
+..\..\..\drivers\usart3\usart3.c(64): error:  #20: identifier "Flag_Left" is undefined
+                if(uart_receive==0x00)  Flag_Qian=0,Flag_Hou=0,Flag_Left=0,Flag_Right=0;//////////////刹车
+..\..\..\drivers\usart3\usart3.c(64): error:  #20: identifier "Flag_Right" is undefined
+                if(uart_receive==0x00)  Flag_Qian=0,Flag_Hou=0,Flag_Left=0,Flag_Right=0;//////////////刹车
+..\..\..\drivers\usart3\usart3.c: 0 warnings, 5 errors
+compiling key.c...
+..\..\..\drivers\KEY\key.c(26): error:  #20: identifier "Flag_Show" is undefined
+                        if(double_key==2) Flag_Show=!Flag_Show,double_key=0,count_single=0;
+..\..\..\drivers\KEY\key.c(32): error:  #20: identifier "Flag_Stop" is undefined
+                        if(++count_single>time) Flag_Stop=!Flag_Stop,double_key=0,count_single=0;       
+..\..\..\drivers\KEY\key.c: 0 warnings, 2 errors
+compiling adc.c...
+..\..\..\drivers\ADC\adc.c(77): error:  #20: identifier "Voltage" is undefined
+        Voltage=Get_Adc(4)*3.3*11.5*100/1.5/4096;               
+..\..\..\drivers\ADC\adc.c: 0 warnings, 1 error
+compiling filter.c...
+compiling DataScope_DP.C...
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(66): warning:  #111-D: statement is unreachable
+                 case 1:   DataScope_OutPut_Buffer[5]  =  5; return  6; break;   
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(67): warning:  #111-D: statement is unreachable
+                 case 2:   DataScope_OutPut_Buffer[9]  =  9; return 10; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(68): warning:  #111-D: statement is unreachable
+                 case 3:   DataScope_OutPut_Buffer[13] = 13; return 14; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(69): warning:  #111-D: statement is unreachable
+                 case 4:   DataScope_OutPut_Buffer[17] = 17; return 18; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(70): warning:  #111-D: statement is unreachable
+                 case 5:   DataScope_OutPut_Buffer[21] = 21; return 22; break; 
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(71): warning:  #111-D: statement is unreachable
+                 case 6:   DataScope_OutPut_Buffer[25] = 25; return 26; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(72): warning:  #111-D: statement is unreachable
+                 case 7:   DataScope_OutPut_Buffer[29] = 29; return 30; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(73): warning:  #111-D: statement is unreachable
+                 case 8:   DataScope_OutPut_Buffer[33] = 33; return 34; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(74): warning:  #111-D: statement is unreachable
+                 case 9:   DataScope_OutPut_Buffer[37] = 37; return 38; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C(75): warning:  #111-D: statement is unreachable
+       case 10:  DataScope_OutPut_Buffer[41] = 41; return 42; break;
+..\..\..\drivers\DataScope_DP\DataScope_DP.C: 10 warnings, 0 errors
+compiling show.c...
+compiling MiniBalance.c...
+..\..\..\drivers\MiniBalance\MiniBalance.c(27): error:  #20: identifier "Way_Angle" is undefined
+                  Get_Angle(Way_Angle);                                    //===更新姿态        
+..\..\..\drivers\MiniBalance\MiniBalance.c(28): error:  #20: identifier "Angle_Balance" is undefined
+                        Balance_Pwm =balance(Angle_Balance,Gyro_Balance);        //===平衡PID控制       
+..\..\..\drivers\MiniBalance\MiniBalance.c(28): error:  #20: identifier "Gyro_Balance" is undefined
+                        Balance_Pwm =balance(Angle_Balance,Gyro_Balance);        //===平衡PID控制       
+..\..\..\drivers\MiniBalance\MiniBalance.c(29): error:  #20: identifier "Encoder_Left" is undefined
+                        Velocity_Pwm=velocity(Encoder_Left,Encoder_Right);       //===速度环PID控制
+..\..\..\drivers\MiniBalance\MiniBalance.c(29): error:  #20: identifier "Encoder_Right" is undefined
+                        Velocity_Pwm=velocity(Encoder_Left,Encoder_Right);       //===速度环PID控制
+..\..\..\drivers\MiniBalance\MiniBalance.c(30): error:  #20: identifier "Gyro_Turn" is undefined
+            Turn_Pwm    =turn(Encoder_Left,Encoder_Right,Gyro_Turn); //===转向环PID控制     
+..\..\..\drivers\MiniBalance\MiniBalance.c(31): error:  #20: identifier "Moto1" is undefined
+                  Moto1=Balance_Pwm+Velocity_Pwm-Turn_Pwm;                 //===计算左轮电机最终PWM
+..\..\..\drivers\MiniBalance\MiniBalance.c(32): error:  #20: identifier "Moto2" is undefined
+                Moto2=Balance_Pwm+Velocity_Pwm+Turn_Pwm;                 //===计算右轮电机最终PWM
+..\..\..\drivers\MiniBalance\MiniBalance.c(34): error:  #20: identifier "Voltage" is undefined
+        if(Turn_Off(Angle_Balance,Voltage)==0)                   //===如果不存在异常
+..\..\..\drivers\MiniBalance\MiniBalance.c(65): error:  #20: identifier "Flag_Qian" is undefined
+                if(1==Flag_Qian)        Movement=-900;               //===如果前进标志位置1 位移为负
+..\..\..\drivers\MiniBalance\MiniBalance.c(66): error:  #20: identifier "Flag_Hou" is undefined
+                else if(1==Flag_Hou)      Movement=900;          //===如果后退标志位置1 位移为正
+..\..\..\drivers\MiniBalance\MiniBalance.c(69): error:  #20: identifier "Encoder_Left" is undefined
+                Encoder_Least =Encoder_Left+Encoder_Right;     //===获取最新速度偏差
+..\..\..\drivers\MiniBalance\MiniBalance.c(69): error:  #20: identifier "Encoder_Right" is undefined
+                Encoder_Least =Encoder_Left+Encoder_Right;     //===获取最新速度偏差
+..\..\..\drivers\MiniBalance\MiniBalance.c(72): error:  #20: identifier "Angle_Balance" is undefined
+          if(Turn_Off(Angle_Balance,Voltage)==0)         //为了防止积分影响用户体验，只有电机开启的时候才开始积分
+..\..\..\drivers\MiniBalance\MiniBalance.c(72): error:  #20: identifier "Voltage" is undefined
+          if(Turn_Off(Angle_Balance,Voltage)==0)         //为了防止积分影响用户体验，只有电机开启的时候才开始积分
+..\..\..\drivers\MiniBalance\MiniBalance.c(93): error:  #20: identifier "Way_Angle" is undefined
+          int Turn_Bias,Turn_Amplitude=1500/Way_Angle+800;     //===Way_Angle为滤波方法，当是1时，即由DMP获取姿态，Turn_Amplitude取大，卡尔曼和互补是，取小，因为这两种滤波算法效果稍差。
+..\..\..\drivers\MiniBalance\MiniBalance.c(96): error:  #20: identifier "Flag_Left" is undefined
+        if(1==Flag_Left||1==Flag_Right)                      //这一部分主要是根据旋转前的速度调整速度的起始速度，增加小车的适应性
+..\..\..\drivers\MiniBalance\MiniBalance.c(96): error:  #20: identifier "Flag_Right" is undefined
+        if(1==Flag_Left||1==Flag_Right)                      //这一部分主要是根据旋转前的速度调整速度的起始速度，增加小车的适应性
+..\..\..\drivers\MiniBalance\MiniBalance.c(116): error:  #20: identifier "Encoder_Left" is undefined
+                Turn_Bias=Encoder_Left-Encoder_Right-Turn_Target;             //===计算转向偏差  
+..\..\..\drivers\MiniBalance\MiniBalance.c(116): error:  #20: identifier "Encoder_Right" is undefined
+                Turn_Bias=Encoder_Left-Encoder_Right-Turn_Target;             //===计算转向偏差  
+..\..\..\drivers\MiniBalance\MiniBalance.c(94): warning:  #177-D: variable "Turn_Bias_Integral" was declared but never referenced
+          static long Turn_Bias_Integral;
+..\..\..\drivers\MiniBalance\MiniBalance.c(149): error:  #20: identifier "Encoder_Left" is undefined
+                if(Encoder_L>32768)  Encoder_Left=Encoder_L-65000; else  Encoder_Left=Encoder_L;  //===数据类型转换
+..\..\..\drivers\MiniBalance\MiniBalance.c(151): error:  #20: identifier "Encoder_Right" is undefined
+          if(Encoder_R>32768)  Encoder_Right=Encoder_R-65000; else  Encoder_Right=Encoder_R;//===数据类型转换
+..\..\..\drivers\MiniBalance\MiniBalance.c(163): error:  #20: identifier "Moto1" is undefined
+      if(Moto1<-Amplitude) Moto1=-Amplitude;    
+..\..\..\drivers\MiniBalance\MiniBalance.c(165): error:  #20: identifier "Moto2" is undefined
+          if(Moto2<-Amplitude) Moto2=-Amplitude;        
+..\..\..\drivers\MiniBalance\MiniBalance.c(179): error:  #20: identifier "Flag_Stop" is undefined
+                        if(angle<-40||angle>40||1==Flag_Stop||Voltage<1110)//===电压低于11.1V 关闭电机
+..\..\..\drivers\MiniBalance\MiniBalance.c(179): error:  #20: identifier "Voltage" is undefined
+                        if(angle<-40||angle>40||1==Flag_Stop||Voltage<1110)//===电压低于11.1V 关闭电机
+..\..\..\drivers\MiniBalance\MiniBalance.c(214): error:  #20: identifier "Gyro_Balance" is undefined
+                        Gyro_Balance=-Gyro_Y;                                  //更新平衡角速度
+..\..\..\drivers\MiniBalance\MiniBalance.c(217): error:  #20: identifier "Way_Angle" is undefined
+        if(Way_Angle==2)                        Kalman_Filter(Accel_Y,-Gyro_Y);//卡尔曼滤波     
+..\..\..\drivers\MiniBalance\MiniBalance.c(219): error:  #20: identifier "Angle_Balance" is undefined
+            Angle_Balance=angle;                                   //更新平衡倾角
+..\..\..\drivers\MiniBalance\MiniBalance.c(220): error:  #20: identifier "Gyro_Turn" is undefined
+                        Gyro_Turn=Gyro_Z;                                      //更新转向角速度
+..\..\..\drivers\MiniBalance\MiniBalance.c: 1 warning, 30 errors
+"..\..\..\HEX_OUTPUT\STM32100E-EVAL.axf" - 38 Error(s), 13 Warning(s).
+Target not created

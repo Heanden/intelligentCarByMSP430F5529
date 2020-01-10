@@ -1,6 +1,0 @@
-Removed Pin From Net: NetName=P2.7 Pin=gestureControl-2
-Removed Pin From Net: NetName=P4.1 Pin=gestureControl-3
-Removed Pin From Net: NetName=P4.2 Pin=gestureControl-4
-Removed Pin From Net: NetName=GND Pin=gestureControl-5
-Removed Pin From Net: NetName=3.3v Pin=gestureControl-6
-Added Room: Name=devBoard

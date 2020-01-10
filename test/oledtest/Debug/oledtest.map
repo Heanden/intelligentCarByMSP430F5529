@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v18.12.4                    
 ******************************************************************************
->> Linked Mon Jan  6 01:25:17 2020
+>> Linked Sat Jan  4 19:46:50 2020
 
 OUTPUT FILE NAME:   <oledtest.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00004640
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00004400
 
 
 MEMORY CONFIGURATION
@@ -19,8 +19,8 @@ MEMORY CONFIGURATION
   INFOB                 00001900   00000080  00000000  00000080  RWIX
   INFOA                 00001980   00000080  00000000  00000080  RWIX
   USBRAM                00001c00   00000800  00000000  00000800  RWIX
-  RAM                   00002400   00002000  000000dc  00001f24  RWIX
-  FLASH                 00004400   0000bb80  0000087e  0000b302  RWIX
+  RAM                   00002400   00002000  000003a0  00001c60  RWIX
+  FLASH                 00004400   0000bb80  0000020e  0000b972  RWIX
   INT00                 0000ff80   00000002  00000000  00000002  RWIX
   INT01                 0000ff82   00000002  00000000  00000002  RWIX
   INT02                 0000ff84   00000002  00000000  00000002  RWIX
@@ -85,7 +85,7 @@ MEMORY CONFIGURATION
   INT61                 0000fffa   00000002  00000002  00000000  RWIX
   INT62                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FLASH2                00010000   00014400  00001220  000131e0  RWIX
+  FLASH2                00010000   00014400  00000328  000140d8  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -93,39 +93,27 @@ SECTION ALLOCATION MAP
  output                                  attributes/
 section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
-.bss       0    00002400    00000038     UNINITIALIZED
-                  00002400    00000028     (.common:dat)
-                  00002428    00000008     (.common:fnum)
-                  00002430    00000004     (.common:fdis)
-                  00002434    00000002     (.common:LastCCR1)
-                  00002436    00000002     (.common:idis)
-
-.data      0    00002438    00000004     UNINITIALIZED
-                  00002438    00000004     main.obj (.data)
+.data      0    00002400    00000300     UNINITIALIZED
+                  00002400    00000300     LQ12864.obj (.data:longqiu96x64)
 
 .stack     0    00004360    000000a0     UNINITIALIZED
                   00004360    00000004     rts430x_lc_rd_eabi.lib : boot.c.obj (.stack)
                   00004364    0000009c     --HOLE--
 
 .text:_isr 
-*          0    00004400    00000264     
-                  00004400    00000240     main.obj (.text:_isr:TIMER0_A1_ISR)
-                  00004640    0000001c     rts430x_lc_rd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs)
-                  0000465c    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
+*          0    00004400    00000024     
+                  00004400    0000001c     rts430x_lc_rd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noargs)
+                  0000441c    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
-.cinit     0    00004c54    0000002a     
-                  00004c54    0000000c     (__TI_handler_table)
-                  00004c60    00000008     (.cinit..data.load) [load image, compression = lzss]
-                  00004c68    00000006     (.cinit..bss.load) [load image, compression = zero_init]
-                  00004c6e    00000010     (__TI_cinit_table)
+.cinit     0    00004424    000001ea     
+                  00004424    000001da     (.cinit..data.load) [load image, compression = lzss]
+                  000045fe    00000008     (__TI_handler_table)
+                  00004606    00000008     (__TI_cinit_table)
 
 .binit     0    00004400    00000000     
 
 .init_array 
 *          0    00004400    00000000     UNINITIALIZED
-
-.const     0    00004664    000005f0     
-                  00004664    000005f0     LQ12864.obj (.const:.string:F8X16)
 
 RTC        0    0000ffd2    00000002     
                   0000ffd2    00000002     rts430x_lc_rd_eabi.lib : int41.asm.obj (.int41)
@@ -166,7 +154,7 @@ USB_UBM    0    0000ffe6    00000002
 
 TIMER0_A1 
 *          0    0000ffe8    00000002     
-                  0000ffe8    00000002     main.obj (.int52)
+                  0000ffe8    00000002     rts430x_lc_rd_eabi.lib : int52.asm.obj (.int52)
 
 TIMER0_A0 
 *          0    0000ffea    00000002     
@@ -204,77 +192,37 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.c.obj (.reset)
 
-.text      0    00010000    00001220     
-                  00010000    000002e0     rts430x_lc_rd_eabi.lib : addd.c.obj (.text:__mspabi_addd)
-                  000102e0    00000280                            : frcmpyd.c.obj (.text:__TI_frcmpyd)
-                  00010560    00000266                            : mpyd.c.obj (.text:__mspabi_mpyd)
-                  000107c6    00000248                            : frcaddd.c.obj (.text:__TI_frcaddd)
-                  00010a0e    0000010c     LQ12864.obj (.text:LCD_Init)
-                  00010b1a    000000b8     rts430x_lc_rd_eabi.lib : fs_mpy.asm.obj (.text)
-                  00010bd2    000000b2                            : renormd.c.obj (.text:__TI_renormd)
-                  00010c84    0000008c                            : cvtdf.c.obj (.text:__mspabi_cvtdf)
-                  00010d10    00000082     LQ12864.obj (.text:LCD_P8x16Str)
-                  00010d92    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
-                  00010e08    00000068                            : fs_toi.asm.obj (.text)
-                  00010e70    00000064                            : cvtfd.c.obj (.text:__mspabi_cvtfd)
-                  00010ed4    00000054                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
-                  00010f28    00000042     LQ12864.obj (.text:LCD_Fill)
-                  00010f6a    0000003e     rts430x_lc_rd_eabi.lib : asr32.asm.obj (.text:l_asr_const)
-                  00010fa8    0000003e                            : lsl32.asm.obj (.text:l_lsl_const)
-                  00010fe6    0000003e                            : lsr32.asm.obj (.text:l_lsr_const)
-                  00011024    00000034     LQ12864.obj (.text:LCD_WrCmd)
-                  00011058    00000034     LQ12864.obj (.text:LCD_WrDat)
-                  0001108c    00000032     rts430x_lc_rd_eabi.lib : subd.c.obj (.text:__mspabi_subd)
-                  000110be    00000026     LQ12864.obj (.text:LCD_Set_Pos)
-                  000110e4    00000024     rts430x_lc_rd_eabi.lib : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
-                  00011108    00000024     main.obj (.text:main)
-                  0001112c    00000024     rts430x_lc_rd_eabi.lib : fs_utof.asm.obj (.text)
-                  00011150    00000024                            : mult32_f5hw.asm.obj (.text)
-                  00011174    00000016     main.obj (.text:HC_SR04Start)
-                  0001118a    00000016     main.obj (.text:TimeGetInit)
-                  000111a0    00000016     rts430x_lc_rd_eabi.lib : div16u.asm.obj (.text)
-                  000111b6    00000014                            : memcpy.c.obj (.text:memcpy)
-                  000111ca    00000012                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
-                  000111dc    00000010                            : asr32.asm.obj (.text:l_asr)
-                  000111ec    00000010                            : lsl32.asm.obj (.text:l_lsl)
-                  000111fc    00000010                            : lsr32.asm.obj (.text:l_lsr)
-                  0001120c    00000006     main.obj (.text:HC_SR04Init)
-                  00011212    00000006     rts430x_lc_rd_eabi.lib : exit.c.obj (.text:abort)
-                  00011218    00000004                            : pre_init.c.obj (.text:_system_pre_init)
-                  0001121c    00000002     LQ12864.obj (.text:LCD_DLY_ms)
-                  0001121e    00000002     rts430x_lc_rd_eabi.lib : startup.c.obj (.text:_system_post_cinit)
+.text      0    00010000    00000328     
+                  00010000    0000010c     LQ12864.obj (.text:LCD_Init)
+                  0001010c    00000076     rts430x_lc_rd_eabi.lib : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00010182    00000054                            : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit_hold_wdt:__TI_auto_init_nobinit_nopinit_hold_wdt)
+                  000101d6    00000042     LQ12864.obj (.text:LCD_Fill)
+                  00010218    0000003c     LQ12864.obj (.text:Draw_LQLogo)
+                  00010254    00000034     LQ12864.obj (.text:LCD_WrCmd)
+                  00010288    00000034     LQ12864.obj (.text:LCD_WrDat)
+                  000102bc    00000026     LQ12864.obj (.text:LCD_Set_Pos)
+                  000102e2    00000014     rts430x_lc_rd_eabi.lib : memcpy.c.obj (.text:memcpy)
+                  000102f6    00000012                            : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00010308    00000012     main.obj (.text:main)
+                  0001031a    00000006     rts430x_lc_rd_eabi.lib : exit.c.obj (.text:abort)
+                  00010320    00000004                            : pre_init.c.obj (.text:_system_pre_init)
+                  00010324    00000002     LQ12864.obj (.text:LCD_DLY_ms)
+                  00010326    00000002     rts430x_lc_rd_eabi.lib : startup.c.obj (.text:_system_post_cinit)
 
 MODULE SUMMARY
 
        Module                       code   ro data   rw data
        ------                       ----   -------   -------
     .\
-       LQ12864.obj                  608    1520      0      
-       main.obj                     662    2         60     
+       LQ12864.obj                  538    0         768    
+       main.obj                     18     0         0      
     +--+----------------------------+------+---------+---------+
-       Total:                       1270   1522      60     
+       Total:                       556    0         768    
                                                             
     C:\ti\ccs920\ccs\tools\compiler\ti-cgt-msp430_18.12.4.LTS\lib\rts430x_lc_rd_eabi.lib
-       addd.c.obj                   736    0         0      
-       frcmpyd.c.obj                640    0         0      
-       mpyd.c.obj                   614    0         0      
-       frcaddd.c.obj                584    0         0      
-       fs_mpy.asm.obj               184    0         0      
-       renormd.c.obj                178    0         0      
-       cvtdf.c.obj                  140    0         0      
        copy_decompress_lzss.c.obj   118    0         0      
-       fs_toi.asm.obj               104    0         0      
-       cvtfd.c.obj                  100    0         0      
        autoinit.c.obj               84     0         0      
-       asr32.asm.obj                78     0         0      
-       lsl32.asm.obj                78     0         0      
-       lsr32.asm.obj                78     0         0      
-       subd.c.obj                   50     0         0      
-       copy_zero_init.c.obj         36     0         0      
-       fs_utof.asm.obj              36     0         0      
-       mult32_f5hw.asm.obj          36     0         0      
        boot.c.obj                   28     2         0      
-       div16u.asm.obj               22     0         0      
        memcpy.c.obj                 20     0         0      
        copy_decompress_none.c.obj   18     0         0      
        isr_trap.asm.obj             8      0         0      
@@ -291,6 +239,7 @@ MODULE SUMMARY
        int49.asm.obj                0      2         0      
        int50.asm.obj                0      2         0      
        int51.asm.obj                0      2         0      
+       int52.asm.obj                0      2         0      
        int53.asm.obj                0      2         0      
        int54.asm.obj                0      2         0      
        int55.asm.obj                0      2         0      
@@ -303,27 +252,25 @@ MODULE SUMMARY
        int62.asm.obj                0      2         0      
        startup.c.obj                2      0         0      
     +--+----------------------------+------+---------+---------+
-       Total:                       3982   44        0      
+       Total:                       288    46        0      
                                                             
        Stack:                       0      0         160    
-       Linker Generated:            0      42        0      
+       Linker Generated:            0      490       0      
     +--+----------------------------+------+---------+---------+
-       Grand Total:                 5252   1608      220    
+       Grand Total:                 844    536       928    
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 00004c6e records: 2, size/record: 8, table size: 16
-	.data: load addr=00004c60, load size=00000008 bytes, run addr=00002438, run size=00000004 bytes, compression=lzss
-	.bss: load addr=00004c68, load size=00000006 bytes, run addr=00002400, run size=00000038 bytes, compression=zero_init
+__TI_cinit_table @ 00004606 records: 1, size/record: 8, table size: 8
+	.data: load addr=00004424, load size=000001da bytes, run addr=00002400, run size=00000300 bytes, compression=lzss
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 00004c54 records: 3, size/record: 4, table size: 12
-	index: 0, handler: __TI_zero_init
-	index: 1, handler: __TI_decompress_lzss
-	index: 2, handler: __TI_decompress_none
+__TI_handler_table @ 000045fe records: 2, size/record: 4, table size: 8
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -412,7 +359,7 @@ address   name
 00000732  ADC12MEM9                              
 00000733  ADC12MEM9_H                            
 00000732  ADC12MEM9_L                            
-00011212  C$$EXIT                                
+0001031a  C$$EXIT                                
 000008c0  CBCTL0                                 
 000008c1  CBCTL0_H                               
 000008c0  CBCTL0_L                               
@@ -471,7 +418,7 @@ address   name
 00000506  DMACTL3                                
 00000508  DMACTL4                                
 0000050e  DMAIV                                  
-00004664  F8X16                                  
+00010218  Draw_LQLogo                            
 00000140  FCTL1                                  
 00000141  FCTL1_H                                
 00000140  FCTL1_L                                
@@ -481,16 +428,12 @@ address   name
 00000146  FCTL4                                  
 00000147  FCTL4_H                                
 00000146  FCTL4_L                                
-0001120c  HC_SR04Init                            
-00011174  HC_SR04Start                           
-0001121c  LCD_DLY_ms                             
-00010f28  LCD_Fill                               
-00010a0e  LCD_Init                               
-00010d10  LCD_P8x16Str                           
-000110be  LCD_Set_Pos                            
-00011024  LCD_WrCmd                              
-00011058  LCD_WrDat                              
-00002434  LastCCR1                               
+00010324  LCD_DLY_ms                             
+000101d6  LCD_Fill                               
+00010000  LCD_Init                               
+000102bc  LCD_Set_Pos                            
+00010254  LCD_WrCmd                              
+00010288  LCD_WrDat                              
 000004c4  MAC                                    
 000004da  MAC32H                                 
 000004db  MAC32H_H                               
@@ -834,8 +777,6 @@ address   name
 000003e0  TB0EX0                                 
 000003ee  TB0IV                                  
 000003d0  TB0R                                   
-00004400  TIMER0_A1_ISR                          
-0001118a  TimeGetInit                            
 000005d0  UCA0ABCTL                              
 000005c6  UCA0BRW                                
 000005c7  UCA0BRW_H                              
@@ -1076,16 +1017,14 @@ address   name
 0000015c  WDTCTL_L                               
 00004400  __STACK_END                            
 000000a0  __STACK_SIZE                           
-00004c6e  __TI_CINIT_Base                        
-00004c7e  __TI_CINIT_Limit                       
-00004c54  __TI_Handler_Table_Base                
-00004c60  __TI_Handler_Table_Limit               
-0000465c  __TI_ISR_TRAP                          
-00010ed4  __TI_auto_init_nobinit_nopinit_hold_wdt
-00010d92  __TI_decompress_lzss                   
-000111ca  __TI_decompress_none                   
-000107c6  __TI_frcaddd                           
-000102e0  __TI_frcmpyd                           
+00004606  __TI_CINIT_Base                        
+0000460e  __TI_CINIT_Limit                       
+000045fe  __TI_Handler_Table_Base                
+00004606  __TI_Handler_Table_Limit               
+0000441c  __TI_ISR_TRAP                          
+00010182  __TI_auto_init_nobinit_nopinit_hold_wdt
+0001010c  __TI_decompress_lzss                   
+000102f6  __TI_decompress_none                   
 0000ffd2  __TI_int41                             
 0000ffd4  __TI_int42                             
 0000ffd6  __TI_int43                             
@@ -1111,81 +1050,16 @@ address   name
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
-00010bd2  __TI_renormd                           
-000110e4  __TI_zero_init_nomemset                
 ffffffff  __c_args__                             
-00010000  __mspabi_addd                          
-00010c84  __mspabi_cvtdf                         
-00010e70  __mspabi_cvtfd                         
-000111a0  __mspabi_divu                          
-00010e08  __mspabi_fixfi                         
-0001112c  __mspabi_fltuf                         
-00010560  __mspabi_mpyd                          
-00010b1a  __mspabi_mpyf                          
-00011150  __mspabi_mpyl_f5hw                     
-000111a0  __mspabi_remu                          
-000111ec  __mspabi_slll                          
-00010fe0  __mspabi_slll_1                        
-00010fbc  __mspabi_slll_10                       
-00010fb8  __mspabi_slll_11                       
-00010fb4  __mspabi_slll_12                       
-00010fb0  __mspabi_slll_13                       
-00010fac  __mspabi_slll_14                       
-00010fa8  __mspabi_slll_15                       
-00010fdc  __mspabi_slll_2                        
-00010fd8  __mspabi_slll_3                        
-00010fd4  __mspabi_slll_4                        
-00010fd0  __mspabi_slll_5                        
-00010fcc  __mspabi_slll_6                        
-00010fc8  __mspabi_slll_7                        
-00010fc4  __mspabi_slll_8                        
-00010fc0  __mspabi_slll_9                        
-000111dc  __mspabi_sral                          
-00010fa2  __mspabi_sral_1                        
-00010f7e  __mspabi_sral_10                       
-00010f7a  __mspabi_sral_11                       
-00010f76  __mspabi_sral_12                       
-00010f72  __mspabi_sral_13                       
-00010f6e  __mspabi_sral_14                       
-00010f6a  __mspabi_sral_15                       
-00010f9e  __mspabi_sral_2                        
-00010f9a  __mspabi_sral_3                        
-00010f96  __mspabi_sral_4                        
-00010f92  __mspabi_sral_5                        
-00010f8e  __mspabi_sral_6                        
-00010f8a  __mspabi_sral_7                        
-00010f86  __mspabi_sral_8                        
-00010f82  __mspabi_sral_9                        
-000111fc  __mspabi_srll                          
-0001101e  __mspabi_srll_1                        
-00010ffa  __mspabi_srll_10                       
-00010ff6  __mspabi_srll_11                       
-00010ff2  __mspabi_srll_12                       
-00010fee  __mspabi_srll_13                       
-00010fea  __mspabi_srll_14                       
-00010fe6  __mspabi_srll_15                       
-0001101a  __mspabi_srll_2                        
-00011016  __mspabi_srll_3                        
-00011012  __mspabi_srll_4                        
-0001100e  __mspabi_srll_5                        
-0001100a  __mspabi_srll_6                        
-00011006  __mspabi_srll_7                        
-00011002  __mspabi_srll_8                        
-00010ffe  __mspabi_srll_9                        
-0001108c  __mspabi_subd                          
-00004640  _c_int00_noargs                        
+00004400  _c_int00_noargs                        
 0000fffe  _reset_vector                          
 00004360  _stack                                 
-0001121e  _system_post_cinit                     
-00011218  _system_pre_init                       
-00011212  abort                                  
-00002400  dat                                    
-00002430  fdis                                   
-00002428  fnum                                   
-00002436  idis                                   
-00002438  k                                      
-00011108  main                                   
-000111b6  memcpy                                 
+00010326  _system_post_cinit                     
+00010320  _system_pre_init                       
+0001031a  abort                                  
+00002400  longqiu96x64                           
+00010308  main                                   
+000102e2  memcpy                                 
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -1923,22 +1797,15 @@ address   name
 000023fd  USBIEPBBAY_7                           
 000023fe  USBIEPBCTY_7                           
 000023ff  USBIEPSIZXY_7                          
-00002400  dat                                    
-00002428  fnum                                   
-00002430  fdis                                   
-00002434  LastCCR1                               
-00002436  idis                                   
-00002438  k                                      
+00002400  longqiu96x64                           
 00004360  _stack                                 
-00004400  TIMER0_A1_ISR                          
 00004400  __STACK_END                            
-00004640  _c_int00_noargs                        
-0000465c  __TI_ISR_TRAP                          
-00004664  F8X16                                  
-00004c54  __TI_Handler_Table_Base                
-00004c60  __TI_Handler_Table_Limit               
-00004c6e  __TI_CINIT_Base                        
-00004c7e  __TI_CINIT_Limit                       
+00004400  _c_int00_noargs                        
+0000441c  __TI_ISR_TRAP                          
+000045fe  __TI_Handler_Table_Base                
+00004606  __TI_CINIT_Base                        
+00004606  __TI_Handler_Table_Limit               
+0000460e  __TI_CINIT_Limit                       
 0000ffd2  __TI_int41                             
 0000ffd4  __TI_int42                             
 0000ffd6  __TI_int43                             
@@ -1962,91 +1829,25 @@ address   name
 0000fffa  __TI_int61                             
 0000fffc  __TI_int62                             
 0000fffe  _reset_vector                          
-00010000  __mspabi_addd                          
-000102e0  __TI_frcmpyd                           
-00010560  __mspabi_mpyd                          
-000107c6  __TI_frcaddd                           
-00010a0e  LCD_Init                               
-00010b1a  __mspabi_mpyf                          
-00010bd2  __TI_renormd                           
-00010c84  __mspabi_cvtdf                         
-00010d10  LCD_P8x16Str                           
-00010d92  __TI_decompress_lzss                   
-00010e08  __mspabi_fixfi                         
-00010e70  __mspabi_cvtfd                         
-00010ed4  __TI_auto_init_nobinit_nopinit_hold_wdt
-00010f28  LCD_Fill                               
-00010f6a  __mspabi_sral_15                       
-00010f6e  __mspabi_sral_14                       
-00010f72  __mspabi_sral_13                       
-00010f76  __mspabi_sral_12                       
-00010f7a  __mspabi_sral_11                       
-00010f7e  __mspabi_sral_10                       
-00010f82  __mspabi_sral_9                        
-00010f86  __mspabi_sral_8                        
-00010f8a  __mspabi_sral_7                        
-00010f8e  __mspabi_sral_6                        
-00010f92  __mspabi_sral_5                        
-00010f96  __mspabi_sral_4                        
-00010f9a  __mspabi_sral_3                        
-00010f9e  __mspabi_sral_2                        
-00010fa2  __mspabi_sral_1                        
-00010fa8  __mspabi_slll_15                       
-00010fac  __mspabi_slll_14                       
-00010fb0  __mspabi_slll_13                       
-00010fb4  __mspabi_slll_12                       
-00010fb8  __mspabi_slll_11                       
-00010fbc  __mspabi_slll_10                       
-00010fc0  __mspabi_slll_9                        
-00010fc4  __mspabi_slll_8                        
-00010fc8  __mspabi_slll_7                        
-00010fcc  __mspabi_slll_6                        
-00010fd0  __mspabi_slll_5                        
-00010fd4  __mspabi_slll_4                        
-00010fd8  __mspabi_slll_3                        
-00010fdc  __mspabi_slll_2                        
-00010fe0  __mspabi_slll_1                        
-00010fe6  __mspabi_srll_15                       
-00010fea  __mspabi_srll_14                       
-00010fee  __mspabi_srll_13                       
-00010ff2  __mspabi_srll_12                       
-00010ff6  __mspabi_srll_11                       
-00010ffa  __mspabi_srll_10                       
-00010ffe  __mspabi_srll_9                        
-00011002  __mspabi_srll_8                        
-00011006  __mspabi_srll_7                        
-0001100a  __mspabi_srll_6                        
-0001100e  __mspabi_srll_5                        
-00011012  __mspabi_srll_4                        
-00011016  __mspabi_srll_3                        
-0001101a  __mspabi_srll_2                        
-0001101e  __mspabi_srll_1                        
-00011024  LCD_WrCmd                              
-00011058  LCD_WrDat                              
-0001108c  __mspabi_subd                          
-000110be  LCD_Set_Pos                            
-000110e4  __TI_zero_init_nomemset                
-00011108  main                                   
-0001112c  __mspabi_fltuf                         
-00011150  __mspabi_mpyl_f5hw                     
-00011174  HC_SR04Start                           
-0001118a  TimeGetInit                            
-000111a0  __mspabi_divu                          
-000111a0  __mspabi_remu                          
-000111b6  memcpy                                 
-000111ca  __TI_decompress_none                   
-000111dc  __mspabi_sral                          
-000111ec  __mspabi_slll                          
-000111fc  __mspabi_srll                          
-0001120c  HC_SR04Init                            
-00011212  C$$EXIT                                
-00011212  abort                                  
-00011218  _system_pre_init                       
-0001121c  LCD_DLY_ms                             
-0001121e  _system_post_cinit                     
+00010000  LCD_Init                               
+0001010c  __TI_decompress_lzss                   
+00010182  __TI_auto_init_nobinit_nopinit_hold_wdt
+000101d6  LCD_Fill                               
+00010218  Draw_LQLogo                            
+00010254  LCD_WrCmd                              
+00010288  LCD_WrDat                              
+000102bc  LCD_Set_Pos                            
+000102e2  memcpy                                 
+000102f6  __TI_decompress_none                   
+00010308  main                                   
+0001031a  C$$EXIT                                
+0001031a  abort                                  
+00010320  _system_pre_init                       
+00010324  LCD_DLY_ms                             
+00010326  _system_post_cinit                     
 ffffffff  __TI_pprof_out_hndl                    
 ffffffff  __TI_prof_data_size                    
 ffffffff  __TI_prof_data_start                   
 ffffffff  __c_args__                             
 
-[856 symbols]
+[783 symbols]

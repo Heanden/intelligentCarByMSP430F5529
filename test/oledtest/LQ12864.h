@@ -1,21 +1,21 @@
 #ifndef __LQ12864_H__
 #define __LQ12864_H__
 
-#define LCD_DC_SET_IO_INIT P8DIR |= BIT2;
-#define LCD_DC_SET P8OUT |= BIT2; //dc 1 ¶ÁÐ´Êý¾Ý
-#define LCD_DC_CLR P8OUT &= ~BIT2;         //dc 0 ¶ÁÐ´ÃüÁî
+#define LCD_DC_SET_IO_INIT P4DIR |= BIT3;
+#define LCD_DC_SET P4OUT |= BIT3; //dc 1 ¶ÁÐ´Êý¾Ý
+#define LCD_DC_CLR P4OUT &= ~BIT3;         //dc 0 ¶ÁÐ´ÃüÁî
 
-#define LCD_RST_SET_IO_INIT P3DIR |= BIT7;
-#define LCD_RST_SET P3OUT |= BIT7;  //
-#define LCD_RST_CLR P3OUT &= ~BIT7; //
+#define LCD_RST_SET_IO_INIT P4DIR |= BIT0;
+#define LCD_RST_SET P4OUT |= BIT0;  //
+#define LCD_RST_CLR P4OUT &= ~BIT0; //
 
-#define LCD_SDA_SET_IO_INIT P4DIR |= BIT0;
-#define LCD_SDA_SET P4OUT |= BIT0;  // D1
-#define LCD_SDA_CLR P4OUT &= ~BIT0; //
+#define LCD_SDA_SET_IO_INIT P3DIR |= BIT7;
+#define LCD_SDA_SET P3OUT |= BIT7;  // D1
+#define LCD_SDA_CLR P3OUT &= ~BIT7; //
 
-#define LCD_SCL_SET_IO_INIT P4DIR |= BIT3;
-#define LCD_SCL_SET P4OUT |= BIT3;  // D0
-#define LCD_SCL_CLR P4OUT &= ~BIT3; //
+#define LCD_SCL_SET_IO_INIT P8DIR |= BIT2;
+#define LCD_SCL_SET P8OUT |= BIT2;  // D0
+#define LCD_SCL_CLR P8OUT &= ~BIT2; //
 
 #define X_WIDTH 128
 #define Y_WIDTH 64

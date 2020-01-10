@@ -1,6 +1,5 @@
 #include "msp430f5529.h"
 #include "include.h"
-#include "bmp.h"
 #include "LQ12864.h"
 unsigned int k = 0;
 unsigned int LastCCR1; //上一次高电平持续的时间，和距离正相关
@@ -113,5 +112,13 @@ void main(void)
 {
     WDTCTL = WDTPW + WDTHOLD; //关闭看门狗
     LCD_Init();               //初始化
-    LCD_P14x16Str(0,6, "陈飞鸢林钧铭");
+    HC_SR04Init();            //初始化超声模块HC_SR04
+    TimeGetInit();            //初始化计数捕获引脚，模式等
+    _EINT();
+    while (1)
+    {
+        HC_SR04Start();
+
+        LPM0;
+    }
 }

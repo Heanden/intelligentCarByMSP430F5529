@@ -6,257 +6,230 @@
 #include "lcd.h"
 #include "key.h"
 
-//é€‰æ‹©PAJ7620U2 BANKåŒºåŸŸ
+//////////////////////////////////////////////////////////////////////////////////	 
+//±¾³ÌĞòÖ»¹©Ñ§Ï°Ê¹ÓÃ£¬Î´¾­×÷ÕßĞí¿É£¬²»µÃÓÃÓÚÆäËüÈÎºÎÓÃÍ¾
+//ALIENTEK Õ½½¢V3 STM32¿ª·¢°å
+//PAJ7620U2 Çı¶¯´úÂë	   
+//ÕıµãÔ­×Ó@ALIENTEK
+//¼¼ÊõÂÛÌ³:www.openedv.com
+//ĞŞ¸ÄÈÕÆÚ:2017/7/1
+//°æ±¾£ºV1.0
+//°æÈ¨ËùÓĞ£¬µÁ°æ±Ø¾¿¡£
+//Copyright(C) ¹ãÖİÊĞĞÇÒíµç×Ó¿Æ¼¼ÓĞÏŞ¹«Ë¾ 2009-2019
+//All rights reserved									  
+//////////////////////////////////////////////////////////////////////////////////
+
+//Ñ¡ÔñPAJ7620U2 BANKÇøÓò
 void paj7620u2_selectBank(bank_e bank)
 {
-	switch (bank)
+	switch(bank)
 	{
-	case BANK0:
-		GS_Write_Byte(PAJ_REGITER_BANK_SEL, PAJ_BANK0);
-		break; //BANK0å¯„å­˜å™¨åŒºåŸŸ
-	case BANK1:
-		GS_Write_Byte(PAJ_REGITER_BANK_SEL, PAJ_BANK1);
-		break; //BANK1å¯„å­˜å™¨åŒºåŸŸ
+		case BANK0: GS_Write_Byte(PAJ_REGITER_BANK_SEL,PAJ_BANK0);break;//BANK0¼Ä´æÆ÷ÇøÓò
+		case BANK1: GS_Write_Byte(PAJ_REGITER_BANK_SEL,PAJ_BANK1);break;//BANK1¼Ä´æÆ÷ÇøÓò
 	}
+			
 }
 
-//PAJ7620U2å”¤é†’
+//PAJ7620U2»½ĞÑ
 u8 paj7620u2_wakeup(void)
-{
-	u8 data = 0x0a;
-	GS_WakeUp();				 //å”¤é†’PAJ7620U2
-	delay_ms(5);				 //å”¤é†’æ—¶é—´>400us
-	GS_WakeUp();				 //å”¤é†’PAJ7620U2
-	delay_ms(5);				 //å”¤é†’æ—¶é—´>400us
-	paj7620u2_selectBank(BANK0); //è¿›å…¥BANK0å¯„å­˜å™¨åŒºåŸŸ
-	data = GS_Read_Byte(0x00);   //è¯»å–çŠ¶æ€
-	if (data != 0x20)
-		return 0; //å”¤é†’å¤±è´¥
-
+{ 
+	u8 data=0x0a;
+	GS_WakeUp();//»½ĞÑPAJ7620U2
+	delay_ms(5);//»½ĞÑÊ±¼ä>400us
+	GS_WakeUp();//»½ĞÑPAJ7620U2
+	delay_ms(5);//»½ĞÑÊ±¼ä>400us
+	paj7620u2_selectBank(BANK0);//½øÈëBANK0¼Ä´æÆ÷ÇøÓò
+	data = GS_Read_Byte(0x00);//¶ÁÈ¡×´Ì¬
+	if(data!=0x20) return 0; //»½ĞÑÊ§°Ü
+	
 	return 1;
 }
 
-//PAJ7620U2åˆå§‹åŒ–
-//è¿”å›å€¼ï¼š0:å¤±è´¥ 1:æˆåŠŸ
+//PAJ7620U2³õÊ¼»¯
+//·µ»ØÖµ£º0:Ê§°Ü 1:³É¹¦
 u8 paj7620u2_init(void)
 {
 	u8 i;
 	u8 status;
-
-	GS_i2c_init();				 //IICåˆå§‹åŒ–
-	status = paj7620u2_wakeup(); //å”¤é†’PAJ7620U2
-	if (!status)
-		return 0;
-	paj7620u2_selectBank(BANK0); //è¿›å…¥BANK0å¯„å­˜å™¨åŒºåŸŸ
-	for (i = 0; i < INIT_SIZE; i++)
+	
+	GS_i2c_init();//IIC³õÊ¼»¯
+	status = paj7620u2_wakeup();//»½ĞÑPAJ7620U2
+	if(!status) return 0;
+    paj7620u2_selectBank(BANK0);//½øÈëBANK0¼Ä´æÆ÷ÇøÓò
+	for(i=0;i<INIT_SIZE;i++)
 	{
-		GS_Write_Byte(init_Array[i][0], init_Array[i][1]); //åˆå§‹åŒ–PAJ7620U2
+		GS_Write_Byte(init_Array[i][0],init_Array[i][1]);//³õÊ¼»¯PAJ7620U2
 	}
-	paj7620u2_selectBank(BANK0); //åˆ‡æ¢å›BANK0å¯„å­˜å™¨åŒºåŸŸ
-
+    paj7620u2_selectBank(BANK0);//ÇĞ»»»ØBANK0¼Ä´æÆ÷ÇøÓò
+	
 	return 1;
 }
 
-//ä¸»èœå•
+//Ö÷²Ëµ¥
 void paj7620u2_test_ui(void)
 {
-	POINT_COLOR = BLUE; //è®¾ç½®å­—ä½“ä¸ºè“è‰²
-	LCD_Fill(30, 170, 300, 300, WHITE);
-	LCD_ShowString(30, 170, 200, 16, 16, "KEY1:   Gesrure test"); //æ‰‹åŠ¿è¯†åˆ«æµ‹è¯•
-	LCD_ShowString(30, 190, 200, 16, 16, "KEY0:   Ps test     "); //æ¥è¿‘æ£€æµ‹æµ‹è¯•
+	POINT_COLOR=BLUE;//ÉèÖÃ×ÖÌåÎªÀ¶É«
+	LCD_Fill(30,170,300,300,WHITE);
+	LCD_ShowString(30,170,200,16,16,"KEY1:   Gesrure test");//ÊÖÊÆÊ¶±ğ²âÊÔ
+	LCD_ShowString(30,190,200,16,16,"KEY0:   Ps test     ");//½Ó½ü¼ì²â²âÊÔ
+	
 }
 
-//æ‰‹åŠ¿è¯†åˆ«æµ‹è¯•
+//ÊÖÊÆÊ¶±ğ²âÊÔ
 void Gesrure_test(void)
 {
 	u8 i;
-	u8 status;
+    u8 status;
 	u8 key;
-	u8 data[2] = {0x00};
+	u8 data[2]={0x00};
 	u16 gesture_data;
-	u8 ledflash = 0;
-
-	paj7620u2_selectBank(BANK0); //è¿›å…¥BANK0
-	for (i = 0; i < GESTURE_SIZE; i++)
+	u8 ledflash=0;
+	
+	paj7620u2_selectBank(BANK0);//½øÈëBANK0
+	for(i=0;i<GESTURE_SIZE;i++)
 	{
-		GS_Write_Byte(gesture_arry[i][0], gesture_arry[i][1]); //æ‰‹åŠ¿è¯†åˆ«æ¨¡å¼åˆå§‹åŒ–
+		GS_Write_Byte(gesture_arry[i][0],gesture_arry[i][1]);//ÊÖÊÆÊ¶±ğÄ£Ê½³õÊ¼»¯
 	}
-	paj7620u2_selectBank(BANK0); //åˆ‡æ¢å›BANK0
-	i = 0;
-	POINT_COLOR = BLUE; //è®¾ç½®å­—ä½“ä¸ºè“è‰²
-	LCD_Fill(30, 170, 300, 300, WHITE);
-	LCD_ShowString(30, 180, 200, 16, 16, "KEY_UP: Exit the test");
-	LCD_ShowString(30, 210, 200, 16, 16, "Gesrure test");
-	POINT_COLOR = RED; //è®¾ç½®å­—ä½“ä¸ºè“è‰²
-	while (1)
+	paj7620u2_selectBank(BANK0);//ÇĞ»»»ØBANK0
+	i=0;
+	POINT_COLOR=BLUE;//ÉèÖÃ×ÖÌåÎªÀ¶É«
+	LCD_Fill(30,170,300,300,WHITE);
+	LCD_ShowString(30,180,200,16,16,"KEY_UP: Exit the test");
+	LCD_ShowString(30,210,200,16,16,"Gesrure test");
+	POINT_COLOR=RED;//ÉèÖÃ×ÖÌåÎªÀ¶É«
+	while(1)
 	{
-		key = KEY_Scan(0);
-		if (key == WKUP_PRES)
+        key = KEY_Scan(0);
+		if(key==WKUP_PRES)
 		{
-			GS_Write_Byte(PAJ_SET_INT_FLAG1, 0X00); //å…³é—­æ‰‹åŠ¿è¯†åˆ«ä¸­æ–­è¾“å‡º
-			GS_Write_Byte(PAJ_SET_INT_FLAG2, 0X00);
+			GS_Write_Byte(PAJ_SET_INT_FLAG1,0X00);//¹Ø±ÕÊÖÊÆÊ¶±ğÖĞ¶ÏÊä³ö
+			GS_Write_Byte(PAJ_SET_INT_FLAG2,0X00);
 			break;
-		}
-		status = GS_Read_nByte(PAJ_GET_INT_FLAG1, 2, &data[0]); //è¯»å–æ‰‹åŠ¿çŠ¶æ€
-		if (!status)
-		{
-			gesture_data = (u16)data[1] << 8 | data[0];
-			if (gesture_data)
+		}			
+        status = GS_Read_nByte(PAJ_GET_INT_FLAG1,2,&data[0]);//¶ÁÈ¡ÊÖÊÆ×´Ì¬			
+		if(!status)
+		{   
+			gesture_data =(u16)data[1]<<8 | data[0];
+			if(gesture_data) 
 			{
-				switch (gesture_data)
+				switch(gesture_data)
 				{
-				case GES_UP:
-					LCD_ShowString(110, 250, 200, 16, 24, "UP          ");
-					printf("Up\r\n");
-					ledflash = 1;
-					break; //å‘ä¸Š
-				case GES_DOWM:
-					LCD_ShowString(100, 250, 200, 16, 24, "Dowm        ");
-					printf("Dowm\r\n");
-					ledflash = 1;
-					break; //å‘ä¸‹
-				case GES_LEFT:
-					LCD_ShowString(100, 250, 200, 16, 24, "Left        ");
-					printf("Left\r\n");
-					ledflash = 1;
-					break; //å‘å·¦
-				case GES_RIGHT:
-					LCD_ShowString(100, 250, 200, 16, 24, "Right       ");
-					printf("Right\r\n");
-					ledflash = 1;
-					break; //å‘å³
-				case GES_FORWARD:
-					LCD_ShowString(80, 250, 200, 16, 24, "Forward     ");
-					printf("Forward\r\n");
-					ledflash = 1;
-					break; //å‘å‰
-				case GES_BACKWARD:
-					LCD_ShowString(80, 250, 200, 16, 24, "Backward    ");
-					printf("Backward\r\n");
-					ledflash = 1;
-					break; //å‘å
-				case GES_CLOCKWISE:
-					LCD_ShowString(70, 250, 200, 16, 24, "Clockwise   ");
-					printf("Clockwise\r\n");
-					ledflash = 1;
-					break; //é¡ºæ—¶é’ˆ
-				case GES_COUNT_CLOCKWISE:
-					LCD_ShowString(50, 250, 200, 16, 24, "AntiClockwise");
-					printf("AntiClockwise\r\n");
-					ledflash = 1;
-					break; //é€†æ—¶é’ˆ
-				case GES_WAVE:
-					LCD_ShowString(100, 250, 200, 16, 24, "Wave         ");
-					printf("Wave\r\n");
-					ledflash = 1;
-					break; //æŒ¥åŠ¨
-				default:
-					ledflash = 0;
-					break;
-				}
-				if (ledflash) //DS1é—ªçƒ
-				{
-					LED1 = 0;
-					delay_ms(80);
-					LED1 = 1;
-					delay_ms(80);
-					LED1 = 0;
-					delay_ms(80);
-					LED1 = 1;
-					delay_ms(80);
+					case GES_UP:               LCD_ShowString(110,250,200,16,24,"UP          ");
+					                           printf("Up\r\n");            ledflash=1;      break; //ÏòÉÏ
+					case GES_DOWM:             LCD_ShowString(100,250,200,16,24,"Dowm        ");      
+               						           printf("Dowm\r\n");          ledflash=1;      break; //ÏòÏÂ
+					case GES_LEFT:             LCD_ShowString(100,250,200,16,24,"Left        ");           
+  						                       printf("Left\r\n");          ledflash=1;      break; //Ïò×ó
+					case GES_RIGHT:            LCD_ShowString(100,250,200,16,24,"Right       ");       
+                						       printf("Right\r\n");         ledflash=1;      break; //ÏòÓÒ
+					case GES_FORWARD:          LCD_ShowString(80,250,200,16,24,"Forward     ");        
+						                       printf("Forward\r\n");       ledflash=1;      break; //ÏòÇ°
+					case GES_BACKWARD:         LCD_ShowString(80,250,200,16,24,"Backward    ");    
+            						           printf("Backward\r\n");      ledflash=1;      break; //Ïòºó
+					case GES_CLOCKWISE:        LCD_ShowString(70,250,200,16,24,"Clockwise   ");     
+                						       printf("Clockwise\r\n");     ledflash=1;      break; //Ë³Ê±Õë
+					case GES_COUNT_CLOCKWISE:  LCD_ShowString(50,250,200,16,24,"AntiClockwise");  
+                   						       printf("AntiClockwise\r\n"); ledflash=1;      break; //ÄæÊ±Õë
+					case GES_WAVE:             LCD_ShowString(100,250,200,16,24,"Wave         ");    
+						                       printf("Wave\r\n");          ledflash=1;      break; //»Ó¶¯
+					default:  ledflash=0; break;
+					
+				}	
+                if(ledflash)//DS1ÉÁË¸
+				{   
+					LED1=0;delay_ms(80);LED1=1;delay_ms(80);
+					LED1=0;delay_ms(80);LED1=1;delay_ms(80);
 					delay_ms(300);
-					LCD_ShowString(40, 250, 200, 16, 24, "                        ");
-					ledflash = 0;
-				}
+					LCD_ShowString(40,250,200,16,24,"                        ");
+					ledflash=0;
+				}						
 			}
+			
 		}
 		delay_ms(50);
 		i++;
-		if (i == 5)
+		if(i==5)
 		{
-			LED0 = !LED0; //æç¤ºç³»ç»Ÿæ­£åœ¨è¿è¡Œ
-			i = 0;
-		}
+			LED0=!LED0;//ÌáÊ¾ÏµÍ³ÕıÔÚÔËĞĞ	
+			i=0;
+		}		   
 	}
 }
 
-//æ¥è¿‘æ£€æµ‹æµ‹è¯•
+//½Ó½ü¼ì²â²âÊÔ
 void Ps_test(void)
 {
 	u8 i;
 	u8 key;
-	u8 data[2] = {0x00};
-	u8 obj_brightness = 0;
-	u16 obj_size = 0;
-
-	paj7620u2_selectBank(BANK0); //è¿›å…¥BANK0
-	for (i = 0; i < PROXIM_SIZE; i++)
+	u8 data[2]={0x00};
+	u8 obj_brightness=0;
+	u16 obj_size=0;
+	
+	paj7620u2_selectBank(BANK0);//½øÈëBANK0
+	for(i=0;i<PROXIM_SIZE;i++)
 	{
-		GS_Write_Byte(proximity_arry[i][0], proximity_arry[i][1]); //æ¥è¿‘è·ç¦»æ¨¡å¼åˆå§‹åŒ–
+		GS_Write_Byte(proximity_arry[i][0],proximity_arry[i][1]);//½Ó½ü¾àÀëÄ£Ê½³õÊ¼»¯
 	}
-	paj7620u2_selectBank(BANK0); //åˆ‡æ¢å›BANK0
-	i = 0;
-	POINT_COLOR = BLUE; //è®¾ç½®å­—ä½“ä¸ºè“è‰²
-	LCD_Fill(30, 170, 300, 300, WHITE);
-	LCD_ShowString(30, 180, 200, 16, 16, "KEY_UP: Exit the test");
-	LCD_ShowString(30, 210, 200, 16, 16, "Ps test");
-	LCD_ShowString(30, 240, 200, 16, 16, "Brightness");
-	LCD_ShowString(160, 240, 200, 16, 16, "Size");
-	POINT_COLOR = RED; //è®¾ç½®å­—ä½“ä¸ºè“è‰²
-
-	while (1)
-	{
+	paj7620u2_selectBank(BANK0);//ÇĞ»»»ØBANK0
+	i=0;
+	POINT_COLOR=BLUE;//ÉèÖÃ×ÖÌåÎªÀ¶É«
+	LCD_Fill(30,170,300,300,WHITE);
+	LCD_ShowString(30,180,200,16,16,"KEY_UP: Exit the test");
+	LCD_ShowString(30,210,200,16,16,"Ps test");
+	LCD_ShowString(30,240,200,16,16,"Brightness");
+	LCD_ShowString(160,240,200,16,16,"Size");
+	POINT_COLOR=RED;//ÉèÖÃ×ÖÌåÎªÀ¶É«	
+	
+	while(1)
+	{	
 		key = KEY_Scan(0);
-		if (key == WKUP_PRES)
-			break;
-
-		obj_brightness = GS_Read_Byte(PAJ_GET_OBJECT_BRIGHTNESS); //è¯»å–ç‰©ä½“äº®åº¦
-		data[0] = GS_Read_Byte(PAJ_GET_OBJECT_SIZE_1);			  //è¯»å–ç‰©ä½“å¤§å°
+		if(key==WKUP_PRES) break;
+		
+		obj_brightness = GS_Read_Byte(PAJ_GET_OBJECT_BRIGHTNESS);//¶ÁÈ¡ÎïÌåÁÁ¶È
+		data[0] = GS_Read_Byte(PAJ_GET_OBJECT_SIZE_1);//¶ÁÈ¡ÎïÌå´óĞ¡
 		data[1] = GS_Read_Byte(PAJ_GET_OBJECT_SIZE_2);
-		obj_size = ((u16)data[1] & 0x0f) << 8 | data[0];
-		LCD_ShowxNum(50, 270, obj_brightness, 3, 24, 0);
-		LCD_ShowxNum(152, 270, obj_size, 3, 24, 0);
-		printf("obj_brightness: %d\r\n", obj_brightness);
-		printf("obj_size: %d\r\n", obj_size);
-
+		obj_size = ((u16)data[1] & 0x0f)<<8 | data[0];
+		LCD_ShowxNum(50,270,obj_brightness,3,24,0);
+		LCD_ShowxNum(152,270,obj_size,3,24,0);
+		printf("obj_brightness: %d\r\n",obj_brightness);
+        printf("obj_size: %d\r\n",obj_size);
+		
 		delay_ms(100);
 		i++;
-		if (i == 5)
+		if(i==5)
 		{
-			LED0 = !LED0; //æç¤ºç³»ç»Ÿæ­£åœ¨è¿è¡Œ
-			i = 0;
+		    LED0=!LED0;//ÌáÊ¾ÏµÍ³ÕıÔÚÔËĞĞ	
+			i=0;
 		}
 	}
+	
 }
-//PAJ7620U2ä¼ æ„Ÿå™¨æµ‹è¯•
+//PAJ7620U2´«¸ĞÆ÷²âÊÔ
 void paj7620u2_sensor_test(void)
-{
-	u8 i = 0;
-	u8 key;
-
-	paj7620u2_test_ui(); //ä¸»èœå•æ˜¾ç¤º
-	while (1)
-	{
-		key = KEY_Scan(0); //æŒ‰é”®æ‰«æ
-		if (key)
-		{
-			switch (key)
-			{
-			case KEY1_PRES:
-				Gesrure_test();
-				break; //æ‰‹åŠ¿æ£€æµ‹æ¨¡å¼
-			case KEY0_PRES:
-				Ps_test();
-				break; //æ¥è¿‘æ£€æµ‹æ¨¡å¼
-			}
-			paj7620u2_test_ui();
-		}
+{   
+	 u8 i=0;
+	 u8 key;
+	
+     paj7620u2_test_ui();//Ö÷²Ëµ¥ÏÔÊ¾
+	 while(1)
+	 {
+		 key = KEY_Scan(0);//°´¼üÉ¨Ãè
+		 if(key)
+		 {
+			 switch(key)
+			 {
+				 case KEY1_PRES:  Gesrure_test();   break;//ÊÖÊÆ¼ì²âÄ£Ê½
+				 case KEY0_PRES:  Ps_test();        break;//½Ó½ü¼ì²âÄ£Ê½  
+			 }
+			 paj7620u2_test_ui();
+		 }
 		delay_ms(50);
 		i++;
-		if (i == 5)
+		if(i==5)
 		{
-			LED0 = !LED0; //æç¤ºç³»ç»Ÿæ­£åœ¨è¿è¡Œ
-			i = 0;
+		    LED0=!LED0;//ÌáÊ¾ÏµÍ³ÕıÔÚÔËĞĞ	
+			i=0;
 		}
-	}
+		 
+	 }
 }

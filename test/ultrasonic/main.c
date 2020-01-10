@@ -22,24 +22,24 @@ void main()
 /*初始化HC_SR04Init()模块*/
 void HC_SR04Init()
 {
-    P1DIR |= BIT3;
+    P1DIR |= BIT2;
 }
 /*开始超声发送*/
 void HC_SR04Start()
 {
-    P1OUT |= BIT3;
+    P1OUT |= BIT2;
     _delay_cycles(12); //至少持续10us的高电平
-    P1OUT &= ~BIT3;
+    P1OUT &= ~BIT2;
 }
 
 /*初始化捕获模式，获取时间*/
 void TimeGetInit()
 {
-    P1DIR &= ~BIT2;
-    P1SEL |= BIT2;
+    P1DIR &= ~BIT3;
+    P1SEL |= BIT3;
 
     TA0CTL = TASSEL_2 + ID_0 + MC_2 + TACLR;
-    TA0CCTL1 = CM_1 + SCS + CAP + CCIE + CCIS_0;
+    TA0CCTL2 = CM_1 + SCS + CAP + CCIE + CCIS_0;
 }
 
 #pragma vector = TIMER0_A1_VECTOR
@@ -53,16 +53,16 @@ __interrupt void TIMER0_A1_ISR(void)
 
     if (times == 1)
     {
-        LastCCR1 = TA0CCR1; //记录下上次CCR2的值
-        TA0CCTL1 &= ~CM_1;  //清上升沿捕获
-        TA0CCTL1 |= CM_2;   //改为下降沿捕获
+        LastCCR1 = TA0CCR2; //记录下上次CCR2的值
+        TA0CCTL2 &= ~CM_1;  //清上升沿捕获
+        TA0CCTL2 |= CM_2;   //改为下降沿捕获
         times++;
     }
     if (times == 0)
     {
         if (i < 20) //把采集到的20次的值都放到数组中
         {
-            dat[i] = TA0CCR1 - LastCCR1;
+            dat[i] = TA0CCR2 - LastCCR1;
             ;
             i++;
         }
@@ -82,19 +82,19 @@ __interrupt void TIMER0_A1_ISR(void)
             }
 
             t = 0;
-            for (i = 2; i < 18; i++)
+            for (i = 7; i < 12; i++)
             {
                 t = t + dat[i];
             }
-            k = t / 16;
+            k = t / 5;
             i = 0;
         }
-        TA0CCTL1 &= ~CM_2; //清除下降沿触发
-        TA0CCTL1 |= CM_1;  //变为上升沿触发
+        TA0CCTL2 &= ~CM_2; //清除下降沿触发
+        TA0CCTL2 |= CM_1;  //变为上升沿触发
         times++;           //改变times的值
     }
     times &= 0x01;      //times>1时清0
     LPM0_EXIT;          //退出低功耗模式
-    TA0CCTL1 &= ~CCIFG; //清除中断响应标志
+    TA0CCTL2 &= ~CCIFG; //清除中断响应标志
     _EINT();            //开中断
 }
